@@ -41,15 +41,13 @@ def main(argv):
          tname = raw_input("Enter the name of the Show: ")
          tseason = int(input("Enter the season number: "))
          tepisode = int(input("Enter the episode number: "))
-         # the "%02d"%var will convert a single digit to two i.e. 1 = 01
-         destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext
+         destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext         # the "%02d"%var will convert a single digit to two i.e. 1 = 01
          destpath = str(destdir)+str(tname)+'/Season '+str(tseason)+'/'+destfile
          
-         # Create dirs if show and/or season do not exist
-         if not os.path.exists(os.path.dirname(destpath)):
+         if not os.path.exists(os.path.dirname(destpath)):          # Create dirs if show and/or season do not exist
             try:
                os.makedirs(os.path.dirname(destpath))
-            except OSError as exc: # Guard against race condition
+            except OSError as exc:              # Guard against race condition
               if exc.errno != errno.EEXIST:
                  raise
          
@@ -66,11 +64,10 @@ def main(argv):
          destfile = str(vname)+'.'+filext
          destpath = str(destdir)+str(vpath)+'/'+destfile
          
-         # Create dirs if they do not exist
          if not os.path.exists(os.path.dirname(destpath)):
             try:
                os.makedirs(os.path.dirname(destpath))
-            except OSError as exc: # Guard against race condition
+            except OSError as exc:
               if exc.errno != errno.EEXIST:
                  raise
          
