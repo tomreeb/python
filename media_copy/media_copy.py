@@ -32,7 +32,10 @@ def main(argv):
          destpath = str(destdir)+str(mname)+'['+str(myear)+'].'+filext
          print "Copying %s" %(str(sourcepath))
          print "To %s" %(str(destpath))
-         copyfile(sourcepath, destpath)
+         if os.path.exists(destpath):                   # Don't overwrite existing files
+            raise Exception("Destination file exists!")
+         else:
+            copyfile(sourcepath, destpath)
       elif opt == "-t":
          filext = sourcefile.rsplit(".",1)[1]
          destdir = '/data/media/TV/'
@@ -53,7 +56,10 @@ def main(argv):
          
          print "Copying %s" %(str(sourcepath))
          print "To %s" %(str(destpath))
-         copyfile(sourcepath, destpath)
+         if os.path.exists(destpath):
+            raise Exception("Destination file exists!")
+         else:
+            copyfile(sourcepath, destpath)
       elif opt == "-v":
          filext = sourcefile.rsplit(".",1)[1]
          destdir = '/data/media/Videos/'
@@ -73,7 +79,10 @@ def main(argv):
          
          print "Copying %s" %(str(sourcepath))
          print "To %s" %(str(destpath))
-         copyfile(sourcepath, destpath)
+         if os.path.exists(destpath):
+            raise Exception("Destination file exists!")
+         else:
+            copyfile(sourcepath, destpath)
          
 if __name__ == "__main__":
    main(sys.argv[1:])

@@ -13,5 +13,4 @@ TV Episodes (-t flag) are copied to /data/media/TV/Show Name/Season X/SXXEXX.ext
 Videos (-v flag) are copied to /data/media/Videos/user/defined/path/video name.ext
 
 ## Future Considerations:
-* Handling existing files (currently will overwrite)
 * Handling a dump of an entire tv series
