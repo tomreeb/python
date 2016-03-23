@@ -14,7 +14,7 @@ def main(argv):
       sys.exit(2)
    for opt, arg in opts:
       sourcefile = arg
-      sourcepath = os.path.abspath(sourcefile)  # Gets full path of file
+      sourcepath = os.path.abspath(sourcefile)      # Gets full path of file
       if opt == '-h':
          print 'usage: python media_copy.py -[m,t,v] <sourcefile>'
          print ''
