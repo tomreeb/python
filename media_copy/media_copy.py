@@ -87,7 +87,7 @@ def main(argv):
             copyfile(sourcepath, destpath)
       elif opt == "-f":
          destdir = '../TV/'
-         os.chdir(destdir)                                                                      # These two lines are for tab compeltion, makes things easier
+         os.chdir(destdir)
          readline.parse_and_bind("tab: complete")
          tname = raw_input("Enter the name of the Show: ")
          tseason = int(input("Enter the season number: "))
@@ -96,13 +96,13 @@ def main(argv):
             for file in files:
                filext = file.rsplit(".",1)[1]
                tepisode = tepisode + 1                                                          # Episode number iteration
-               destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext           # the "%02d"%var will convert a single digit to two i.e. 1 = 01
+               destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext
                destpath = str(destdir)+str(tname)+'/Season '+str(tseason)+'/'+destfile
 
-               if not os.path.exists(os.path.dirname(destpath)):                                # Create dirs if show and/or season do not exist
+               if not os.path.exists(os.path.dirname(destpath)):
                   try:
                      os.makedirs(os.path.dirname(destpath))
-                  except OSError as exc:                                                        # Guard against race condition
+                  except OSError as exc:
                      if exc.errno != errno.EEXIST:
                         raise
 
