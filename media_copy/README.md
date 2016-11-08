@@ -15,5 +15,5 @@ Full TV Season (-f flag) episodes are copied sequentially to /data/media/TV/Show
 Videos (-v flag) are copied to /data/media/Videos/user/defined/path/video name.ext
 
 ## Future Considerations:
-* ~Handling a dump of an entire tv series~
+* ~~Handling a dump of an entire tv series~~
 * Need to add handling to deal with non media files in the directory
