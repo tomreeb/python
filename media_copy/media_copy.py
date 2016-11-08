@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-import os, sys, getopt, readline
+import os, sys, getopt, readline, re
 
 from shutil import copyfile
 
 def main(argv):
    sourcefile = ''
    try:
-      opts, args = getopt.getopt(argv,"hm:t:v:")
+      opts, args = getopt.getopt(argv,"hm:t:v:f:")
    except getopt.GetoptError:
       print 'Invalid option or argument'
       print 'Try -h for more information'
@@ -46,14 +46,14 @@ def main(argv):
          tepisode = int(input("Enter the episode number: "))
          destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext         # the "%02d"%var will convert a single digit to two i.e. 1 = 01
          destpath = str(destdir)+str(tname)+'/Season '+str(tseason)+'/'+destfile
-         
+
          if not os.path.exists(os.path.dirname(destpath)):          # Create dirs if show and/or season do not exist
             try:
                os.makedirs(os.path.dirname(destpath))
             except OSError as exc:              # Guard against race condition
               if exc.errno != errno.EEXIST:
                  raise
-         
+
          print "Copying %s" %(str(sourcepath))
          print "To %s" %(str(destpath))
          if os.path.exists(destpath):
@@ -69,20 +69,48 @@ def main(argv):
          vname = raw_input("Enter the name for the video: ")
          destfile = str(vname)+'.'+filext
          destpath = str(destdir)+str(vpath)+'/'+destfile
-         
+
          if not os.path.exists(os.path.dirname(destpath)):
             try:
                os.makedirs(os.path.dirname(destpath))
             except OSError as exc:
               if exc.errno != errno.EEXIST:
                  raise
-         
+
          print "Copying %s" %(str(sourcepath))
          print "To %s" %(str(destpath))
          if os.path.exists(destpath):
             raise Exception("Destination file exists!")
          else:
             copyfile(sourcepath, destpath)
-         
+    elif opt == "-f":
+        destdir = '/data/media/TV/'
+        os.chdir(destdir)              # These two lines are for tab compeltion, makes things easier
+        readline.parse_and_bind("tab: complete")
+        tname = raw_input("Enter the name of the Show: ")
+        tseason = int(input("Enter the season number: "))
+        tepisode = 0
+        for files in os.walk(sourcefile):
+            for file in files:
+                filext = file.rsplit(".",1)[1]
+
+                tepisode = tepisode + 1 # Episode number
+
+                destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext         # the "%02d"%var will convert a single digit to two i.e. 1 = 01
+                destpath = str(destdir)+str(tname)+'/Season '+str(tseason)+'/'+destfile
+
+                if not os.path.exists(os.path.dirname(destpath)):          # Create dirs if show and/or season do not exist
+                   try:
+                      os.makedirs(os.path.dirname(destpath))
+                   except OSError as exc:              # Guard against race condition
+                     if exc.errno != errno.EEXIST:
+                        raise
+
+                print "Copying %s" %(str(sourcepath))
+                print "To %s" %(str(destpath))
+                if os.path.exists(destpath):
+                   raise Exception("Destination file exists!")
+                else:
+                   copyfile(sourcepath, destpath)
 if __name__ == "__main__":
    main(sys.argv[1:])
