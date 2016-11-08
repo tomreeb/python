@@ -86,7 +86,7 @@ def main(argv):
          else:
             copyfile(sourcepath, destpath)
       elif opt == "-f":
-         destdir = '../TV/'
+         destdir = '/data/media/TV/'
          os.chdir(destdir)
          readline.parse_and_bind("tab: complete")
          tname = raw_input("Enter the name of the Show: ")
