@@ -90,11 +90,11 @@ def main(argv):
          tname = raw_input("Enter the name of the Show: ")
          tseason = int(input("Enter the season number: "))
          tepisode = 0
-         for files in os.walk(sourcefile):
+         for subdir, dirs, files in os.walk(sourcefile):
             for file in files:
                filext = file.rsplit(".",1)[1]
 
-               tepisode = tepisode + 1 # Episode number
+               tepisode = tepisode + 1 # Episode number iteration
 
                destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext         # the "%02d"%var will convert a single digit to two i.e. 1 = 01
                destpath = str(destdir)+str(tname)+'/Season '+str(tseason)+'/'+destfile
@@ -106,12 +106,12 @@ def main(argv):
                      if exc.errno != errno.EEXIST:
                         raise
 
-               print "Copying %s" %(str(sourcepath))
+               print "Copying %s" %(str(file))
                print "To %s" %(str(destpath))
                if os.path.exists(destpath):
                   raise Exception("Destination file exists!")
                else:
-                  copyfile(sourcepath, destpath)
+                  copyfile(sourcefile+'/'+file, destpath)
 
 if __name__ == "__main__":
    main(sys.argv[1:])
