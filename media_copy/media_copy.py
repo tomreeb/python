@@ -16,11 +16,12 @@ def main(argv):
       sourcefile = arg
       sourcepath = os.path.abspath(sourcefile)                                                  # Gets full path of file
       if opt == '-h':
-         print 'usage: python media_copy.py -[m,t,v] <sourcefile>'
+         print 'usage: python media_copy.py -[m,t,f,v] <source>'
          print ''
          print 'Options and arguments'
          print ' -m     : Movies are copied to /data/media/Movies and renamed Movie Name[YEAR].ext'
-         print ' -t     : TV Episodes are copied to /data/media/TV/Show Name/Season X/ and renamed SXXEXX.ext'
+         print ' -t     : Individual TV Episodes are copied to /data/media/TV/Show Name/Season X/ and renamed SXXEXX.ext'
+         print ' -f     : Same as above but will loop through directory and copy files sequentially'
          print ' -v     : Videos are copied to /data/media/Videos/user/defined/path/ and renamed Video Name.ext'
          sys.exit()
       elif opt == "-m":
