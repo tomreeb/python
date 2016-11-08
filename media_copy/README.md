@@ -1,5 +1,4 @@
 # Media File Copy Script
-By: Tom Reeb, March 22nd 2016
 
 The purpose of this script is to copy and rename a file based on the type. We are handling four different cases: Movies, TV Episodes, TV Seasons, and Misc. Videos.
 
