@@ -17,3 +17,4 @@ Videos (-v flag) are copied to /data/media/Videos/user/defined/path/video name.e
 ## Future Considerations:
 * ~~Handling a dump of an entire tv series~~
 * ~~Need to add handling to deal with non media files in the directory~~
+* I want to rename some variables so they make more sense
