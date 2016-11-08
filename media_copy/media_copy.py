@@ -9,8 +9,8 @@ def main(argv):
    supportedFiletypes = ['mkv', 'avi', 'mp4', 'mov', 'mpg', 'mpeg', 'm4v', ]
    try:
       opts, args = getopt.getopt(argv,"hm:t:v:f:")
-   except getopt.GetoptError:
-      print 'Invalid option or argument'
+   except getopt.GetoptError as err:
+      print str(err)
       print 'Try -h for more information'
       sys.exit(2)
    for opt, arg in opts:
@@ -86,7 +86,7 @@ def main(argv):
          else:
             copyfile(sourcepath, destpath)
       elif opt == "-f":
-         destdir = '/data/media/TV/'
+         destdir = '../TV/'
          os.chdir(destdir)                                                                      # These two lines are for tab compeltion, makes things easier
          readline.parse_and_bind("tab: complete")
          tname = raw_input("Enter the name of the Show: ")
@@ -105,6 +105,7 @@ def main(argv):
                   except OSError as exc:                                                        # Guard against race condition
                      if exc.errno != errno.EEXIST:
                         raise
+
                if filext in supportedFiletypes:                                                 # Only copy media files
                   print "Copying %s" %(str(file))
                   print "To %s" %(str(destpath))
