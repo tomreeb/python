@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, sys, getopt, readline, re
+import os, sys, getopt, readline
 
 from shutil import copyfile
 
