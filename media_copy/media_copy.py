@@ -6,6 +6,7 @@ from shutil import copyfile
 
 def main(argv):
    sourcefile = ''
+   supportedFiletypes = ['mkv', 'avi', 'mp4', 'mov', 'mpg', 'mpeg', 'm4v', ]
    try:
       opts, args = getopt.getopt(argv,"hm:t:v:f:")
    except getopt.GetoptError:
@@ -104,13 +105,13 @@ def main(argv):
                   except OSError as exc:                                                        # Guard against race condition
                      if exc.errno != errno.EEXIST:
                         raise
-
-               print "Copying %s" %(str(file))
-               print "To %s" %(str(destpath))
-               if os.path.exists(destpath):
-                  raise Exception("Destination file exists!")
-               else:
-                  copyfile(sourcefile+'/'+file, destpath)
+               if filext in supportedFiletypes:                                                 # Only copy media files
+                  print "Copying %s" %(str(file))
+                  print "To %s" %(str(destpath))
+                  if os.path.exists(destpath):
+                     raise Exception("Destination file exists!")
+                  else:
+                     copyfile(sourcefile+'/'+file, destpath)
 
 if __name__ == "__main__":
    main(sys.argv[1:])
