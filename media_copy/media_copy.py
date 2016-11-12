@@ -107,7 +107,6 @@ def main(argv):
                                 if exc.errno != errno.EEXIST:
                                     raise
 
-                    #if filext in supportedFiletypes:
                         print "Copying %s" %(str(file))
                         print "To %s" %(str(destpath))
                         if os.path.exists(destpath):
