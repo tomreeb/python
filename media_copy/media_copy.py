@@ -52,7 +52,7 @@ def main(argv):
             if not os.path.exists(os.path.dirname(destpath)):                                      # Create dirs if show and/or season do not exist
                 try:
                     os.makedirs(os.path.dirname(destpath))
-                except OSError as exc:                                                              # Guard against race condition
+                except OSError as exc:                                                             # Guard against race condition
                     if exc.errno != errno.EEXIST:
                         raise
 
@@ -95,18 +95,19 @@ def main(argv):
             for subdir, dirs, files in os.walk(sourcefile):
                 for file in files:
                     filext = file.rsplit(".",1)[1]
-                    tepisode = tepisode + 1                                                          # Episode number iteration
-                    destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext
-                    destpath = str(destdir)+str(tname)+'/Season '+str(tseason)+'/'+destfile
+                    if filext in supportedFiletypes:                                               # Only copy media files
+                        tepisode = tepisode + 1                                                    # Episode number iteration
+                        destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext
+                        destpath = str(destdir)+str(tname)+'/Season '+str(tseason)+'/'+destfile
 
-                    if not os.path.exists(os.path.dirname(destpath)):
-                        try:
-                            os.makedirs(os.path.dirname(destpath))
-                        except OSError as exc:
-                            if exc.errno != errno.EEXIST:
-                                raise
+                        if not os.path.exists(os.path.dirname(destpath)):
+                            try:
+                                os.makedirs(os.path.dirname(destpath))
+                            except OSError as exc:
+                                if exc.errno != errno.EEXIST:
+                                    raise
 
-                    if filext in supportedFiletypes:                                                 # Only copy media files
+                    #if filext in supportedFiletypes:
                         print "Copying %s" %(str(file))
                         print "To %s" %(str(destpath))
                         if os.path.exists(destpath):
