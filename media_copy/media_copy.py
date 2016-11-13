@@ -33,11 +33,16 @@ def main(argv):
             destfile = str(mname)+'['+str(myear)+'].'+filext
             destpath = str(destdir)+str(mname)+'['+str(myear)+'].'+filext
             print "Copying %s" %(str(sourcepath))
-            print "To %s" %(str(destpath))
+            print "To %s" %(str(destpath)),
+            s = '.'
             if os.path.exists(destpath):                                                           # Don't overwrite existing files
                 raise Exception("Destination file exists!")
             else:
                 copyfile(sourcepath, destpath)
+                while True:
+                    sys.stdout.write( s )
+                    sys.stdout.flush()
+                    time.sleep(0.5)
         elif opt == "-t":
             filext = sourcefile.rsplit(".",1)[1]
             destdir = '/data/media/TV/'
@@ -57,11 +62,16 @@ def main(argv):
                         raise
 
             print "Copying %s" %(str(sourcepath))
-            print "To %s" %(str(destpath))
+            print "To %s" %(str(destpath)),
+            s = '.'
             if os.path.exists(destpath):
                 raise Exception("Destination file exists!")
             else:
                 copyfile(sourcepath, destpath)
+                while True:
+                    sys.stdout.write( s )
+                    sys.stdout.flush()
+                    time.sleep(0.5)
         elif opt == "-v":
             filext = sourcefile.rsplit(".",1)[1]
             destdir = '/data/media/Videos/'
@@ -80,11 +90,16 @@ def main(argv):
                         raise
 
             print "Copying %s" %(str(sourcepath))
-            print "To %s" %(str(destpath))
+            print "To %s" %(str(destpath)),
+            s = '.'
             if os.path.exists(destpath):
                 raise Exception("Destination file exists!")
             else:
                 copyfile(sourcepath, destpath)
+                while True:
+                    sys.stdout.write( s )
+                    sys.stdout.flush()
+                    time.sleep(0.5)
         elif opt == "-f":
             destdir = '/data/media/TV/'
             os.chdir(destdir)
