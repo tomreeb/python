@@ -7,7 +7,6 @@ from shutil import copyfile
 def main(argv):
     sourcefile = ''
     supportedFiletypes = [ 'mkv', 'avi', 'mp4', 'mov', 'mpg', 'mpeg', 'm4v' ]
-    s = '.'
     try:
         opts, args = getopt.getopt(argv,"hm:t:v:f:")
     except getopt.GetoptError as err:
@@ -39,10 +38,6 @@ def main(argv):
                 raise Exception("Destination file exists!")
             else:
                 copyfile(sourcepath, destpath)
-                while True:
-                    sys.stdout.write( s )
-                    sys.stdout.flush()
-                    time.sleep(0.5)
         elif opt == "-t":
             filext = sourcefile.rsplit(".",1)[1]
             destdir = '/data/media/TV/'
@@ -67,10 +62,6 @@ def main(argv):
                 raise Exception("Destination file exists!")
             else:
                 copyfile(sourcepath, destpath)
-                while True:
-                    sys.stdout.write( s )
-                    sys.stdout.flush()
-                    time.sleep(0.5)
         elif opt == "-v":
             filext = sourcefile.rsplit(".",1)[1]
             destdir = '/data/media/Videos/'
@@ -94,10 +85,6 @@ def main(argv):
                 raise Exception("Destination file exists!")
             else:
                 copyfile(sourcepath, destpath)
-                while True:
-                    sys.stdout.write( s )
-                    sys.stdout.flush()
-                    time.sleep(0.5)
         elif opt == "-f":
             destdir = '/data/media/TV/'
             os.chdir(destdir)
@@ -122,15 +109,11 @@ def main(argv):
                                     raise
 
                         print "Copying %s" %(str(file))
-                        print "To %s" %(str(destpath)),
+                        print "To %s" %(str(destpath))
                         if os.path.exists(destpath):
                             raise Exception("Destination file exists!")
                         else:
                             copyfile(os.path.abspath(file), destpath)
-                            while True:
-                                sys.stdout.write( s )
-                                sys.stdout.flush()
-                                time.sleep(0.5)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
