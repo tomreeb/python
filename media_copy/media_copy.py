@@ -93,7 +93,7 @@ def main(argv):
             tseason = int(input("Enter the season number: "))
             tepisode = 0
             os.chdir(sourcepath)
-            for subdir, dirs, files in os.walk('.', topdown=True):
+            for subdir, dirs, files in os.walk('.'):
                 for file in files:
                     filext = file.rsplit(".",1)[1]
                     print os.path.abspath(file)                                                    # Only here for troubleshooting
