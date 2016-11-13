@@ -92,9 +92,11 @@ def main(argv):
             tname = raw_input("Enter the name of the Show: ")
             tseason = int(input("Enter the season number: "))
             tepisode = 0
-            for subdir, dirs, files in os.walk(sourcefile):
+            os.chdir(sourcepath)
+            for subdir, dirs, files in os.walk('.', topdown=True):
                 for file in files:
                     filext = file.rsplit(".",1)[1]
+                    print os.path.abspath(file)                                                    # Only here for troubleshooting
                     if filext in supportedFiletypes:                                               # Only copy media files
                         tepisode = tepisode + 1                                                    # Episode number iteration
                         destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext
@@ -112,7 +114,7 @@ def main(argv):
                         if os.path.exists(destpath):
                             raise Exception("Destination file exists!")
                         else:
-                            copyfile(sourcefile+file, destpath)
+                            copyfile(os.path.abspath(file), destpath)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
