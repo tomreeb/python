@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, sys, getopt, readline, time
+import os, sys, getopt, readline
 
 from shutil import copyfile
 
@@ -33,7 +33,7 @@ def main(argv):
             destfile = str(mname)+'['+str(myear)+'].'+filext
             destpath = str(destdir)+str(mname)+'['+str(myear)+'].'+filext
             print "Copying %s" %(str(sourcepath))
-            print "To %s" %(str(destpath)),
+            print "To %s" %(str(destpath))
             if os.path.exists(destpath):                                                           # Don't overwrite existing files
                 raise Exception("Destination file exists!")
             else:
@@ -57,7 +57,7 @@ def main(argv):
                         raise
 
             print "Copying %s" %(str(sourcepath))
-            print "To %s" %(str(destpath)),
+            print "To %s" %(str(destpath))
             if os.path.exists(destpath):
                 raise Exception("Destination file exists!")
             else:
@@ -80,7 +80,7 @@ def main(argv):
                         raise
 
             print "Copying %s" %(str(sourcepath))
-            print "To %s" %(str(destpath)),
+            print "To %s" %(str(destpath))
             if os.path.exists(destpath):
                 raise Exception("Destination file exists!")
             else:
