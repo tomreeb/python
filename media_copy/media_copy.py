@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, sys, getopt, readline
+import os, sys, getopt, readline, time
 
 from shutil import copyfile
 
@@ -109,11 +109,16 @@ def main(argv):
                                     raise
 
                         print "Copying %s" %(str(file))
-                        print "To %s" %(str(destpath))
+                        print "To %s" %(str(destpath)),
+                        s = '.'
                         if os.path.exists(destpath):
                             raise Exception("Destination file exists!")
                         else:
                             copyfile(os.path.abspath(file), destpath)
+                            while True:
+                                sys.stdout.write( s )
+                                sys.stdout.flush()
+                                time.sleep(0.5)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
