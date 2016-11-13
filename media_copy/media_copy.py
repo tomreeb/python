@@ -94,9 +94,8 @@ def main(argv):
             tepisode = 0
             os.chdir(sourcepath)
             for subdir, dirs, files in os.walk('.'):
-                for file in files:
+                for file in sorted(files):
                     filext = file.rsplit(".",1)[1]
-                    print os.path.abspath(file)                                                    # Only here for troubleshooting
                     if filext in supportedFiletypes:                                               # Only copy media files
                         tepisode = tepisode + 1                                                    # Episode number iteration
                         destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext
