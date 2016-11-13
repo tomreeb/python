@@ -7,6 +7,7 @@ from shutil import copyfile
 def main(argv):
     sourcefile = ''
     supportedFiletypes = [ 'mkv', 'avi', 'mp4', 'mov', 'mpg', 'mpeg', 'm4v' ]
+    s = '.'
     try:
         opts, args = getopt.getopt(argv,"hm:t:v:f:")
     except getopt.GetoptError as err:
@@ -34,7 +35,6 @@ def main(argv):
             destpath = str(destdir)+str(mname)+'['+str(myear)+'].'+filext
             print "Copying %s" %(str(sourcepath))
             print "To %s" %(str(destpath)),
-            s = '.'
             if os.path.exists(destpath):                                                           # Don't overwrite existing files
                 raise Exception("Destination file exists!")
             else:
@@ -63,7 +63,6 @@ def main(argv):
 
             print "Copying %s" %(str(sourcepath))
             print "To %s" %(str(destpath)),
-            s = '.'
             if os.path.exists(destpath):
                 raise Exception("Destination file exists!")
             else:
@@ -91,7 +90,6 @@ def main(argv):
 
             print "Copying %s" %(str(sourcepath))
             print "To %s" %(str(destpath)),
-            s = '.'
             if os.path.exists(destpath):
                 raise Exception("Destination file exists!")
             else:
@@ -125,7 +123,6 @@ def main(argv):
 
                         print "Copying %s" %(str(file))
                         print "To %s" %(str(destpath)),
-                        s = '.'
                         if os.path.exists(destpath):
                             raise Exception("Destination file exists!")
                         else:
