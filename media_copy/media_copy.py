@@ -112,7 +112,7 @@ def main(argv):
                         if os.path.exists(destpath):
                             raise Exception("Destination file exists!")
                         else:
-                            copyfile(sourcefile+'/'+file, destpath)
+                            copyfile(sourcefile+file, destpath)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
