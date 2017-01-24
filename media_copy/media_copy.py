@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
-import os, sys, getopt, readline
+import os
+import sys
+import getopt
+import readline
 
 from shutil import copyfile
 
@@ -63,7 +66,7 @@ def main(argv):
             else:
                 copyfile(sourcepath, destpath)
         elif opt == "-v":
-            filext = sourcefile.rsplit(".",1)[1]
+            filext = sourcefile.rsplit(".", 1)[1]
             destdir = '/data/media/Videos/'
             os.chdir(destdir)
             readline.parse_and_bind("tab: complete")
