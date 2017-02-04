@@ -7,11 +7,12 @@ import readline
 
 from shutil import copyfile
 
+
 def main(argv):
     sourcefile = ''
-    supportedFiletypes = [ 'mkv', 'avi', 'mp4', 'mov', 'mpg', 'mpeg', 'm4v' ]
+    supportedFiletypes = ['mkv', 'avi', 'mp4', 'mov', 'mpg', 'mpeg', 'm4v']
     try:
-        opts, args = getopt.getopt(argv,"hm:t:v:f:")
+        opts, args = getopt.getopt(argv, "hm:t:v:f:")
     except getopt.GetoptError as err:
         print str(err)
         print 'Try -h for more information'
@@ -29,27 +30,27 @@ def main(argv):
             print ' -v     : Videos are copied to /data/media/Videos/user/defined/path/ and renamed Video Name.ext'
             sys.exit()
         elif opt == "-m":
-            filext = sourcefile.rsplit(".",1)[1]                                                   # Take file name and split from right into 2 parts. Use the second part [1], which is the extension
+            filext = sourcefile.rsplit(".", 1)[1]                                                   # Take file name and split from right into 2 parts. Use the second part [1], which is the extension
             destdir = '/data/media/Movies/'
             mname = raw_input("Enter the name of the Movie: ")
             myear = raw_input("Enter the year of the Movie: ")
             destfile = str(mname)+'['+str(myear)+'].'+filext
             destpath = str(destdir)+str(mname)+'['+str(myear)+'].'+filext
-            print "Copying %s" %(str(sourcepath))
-            print "To %s" %(str(destpath))
+            print "Copying %s" % (str(sourcepath))
+            print "To %s" % (str(destpath))
             if os.path.exists(destpath):                                                           # Don't overwrite existing files
                 raise Exception("Destination file exists!")
             else:
                 copyfile(sourcepath, destpath)
         elif opt == "-t":
-            filext = sourcefile.rsplit(".",1)[1]
+            filext = sourcefile.rsplit(".", 1)[1]
             destdir = '/data/media/TV/'
             os.chdir(destdir)                                                                      # These two lines are for tab compeltion, makes things easier
             readline.parse_and_bind("tab: complete")
             tname = raw_input("Enter the name of the Show: ")
             tseason = int(input("Enter the season number: "))
             tepisode = int(input("Enter the episode number: "))
-            destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext                 # the "%02d"%var will convert a single digit to two i.e. 1 = 01
+            destfile = 'S'+str("%02d" % tseason)+'E'+str("%02d" % tepisode)+'.'+filext                 # the "%02d"%var will convert a single digit to two i.e. 1 = 01
             destpath = str(destdir)+str(tname)+'/Season '+str(tseason)+'/'+destfile
 
             if not os.path.exists(os.path.dirname(destpath)):                                      # Create dirs if show and/or season do not exist
@@ -59,8 +60,8 @@ def main(argv):
                     if exc.errno != errno.EEXIST:
                         raise
 
-            print "Copying %s" %(str(sourcepath))
-            print "To %s" %(str(destpath))
+            print "Copying %s" % (str(sourcepath))
+            print "To %s" % (str(destpath))
             if os.path.exists(destpath):
                 raise Exception("Destination file exists!")
             else:
@@ -82,8 +83,8 @@ def main(argv):
                     if exc.errno != errno.EEXIST:
                         raise
 
-            print "Copying %s" %(str(sourcepath))
-            print "To %s" %(str(destpath))
+            print "Copying %s" % (str(sourcepath))
+            print "To %s" % (str(destpath))
             if os.path.exists(destpath):
                 raise Exception("Destination file exists!")
             else:
@@ -98,10 +99,10 @@ def main(argv):
             os.chdir(sourcepath)
             for subdir, dirs, files in os.walk('.'):
                 for file in sorted(files):
-                    filext = file.rsplit(".",1)[1]
+                    filext = file.rsplit(".", 1)[1]
                     if filext in supportedFiletypes:                                               # Only copy media files
                         tepisode = tepisode + 1                                                    # Episode number iteration
-                        destfile = 'S'+str("%02d"%tseason)+'E'+str("%02d"%tepisode)+'.'+filext
+                        destfile = 'S'+str("%02d" % tseason)+'E'+str("%02d" % tepisode)+'.'+filext
                         destpath = str(destdir)+str(tname)+'/Season '+str(tseason)+'/'+destfile
 
                         if not os.path.exists(os.path.dirname(destpath)):
@@ -111,8 +112,8 @@ def main(argv):
                                 if exc.errno != errno.EEXIST:
                                     raise
 
-                        print "Copying %s" %(str(file))
-                        print "To %s" %(str(destpath))
+                        print "Copying %s" % (str(file))
+                        print "To %s" % (str(destpath))
                         if os.path.exists(destpath):
                             raise Exception("Destination file exists!")
                         else:
