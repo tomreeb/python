@@ -2,7 +2,7 @@
 
 import os
 import sys
-import getopt
+import argparse
 import readline
 
 from shutil import copyfile
