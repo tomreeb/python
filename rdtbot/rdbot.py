@@ -24,7 +24,7 @@ for submission in subreddit.hot(limit=100):
     # print(submission.title)
 
     # If we haven't replied to this post before
-#    if comment.id not in posts_replied_to:
+    # if comment.id not in posts_replied_to:
         submission.comments.replace_more(limit=0)
         for comment in submission.comments.list():
             if comment.id not in posts_replied_to:
