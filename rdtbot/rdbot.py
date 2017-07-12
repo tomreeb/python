@@ -34,7 +34,7 @@ for submission in subreddit.hot(limit=100):
                     # Reply to the post
                     comment.reply("You keep on using this word "jabroni" and... it's awesome!")
                     print("Bot replying to : ", comment.id)
-                    print(comment.body)
+                    # print(comment.body)
 
                     # Store the current id into our list
                     posts_replied_to.append(comment.id)
